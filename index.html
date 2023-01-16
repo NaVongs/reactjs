@@ -10,14 +10,18 @@
     const root = document.getElementById("root");
     function App() {
         const [counter, modifier] = React.useState(0);
+        const onClick = () => {
+          modifier((current) => current + 1); //Maybe because of race condition?
+        }
         return (
           <div>
-            <h3> Total click : 0 </h3>
-            <button>Click me</button>
+            <h4> Version 3.4 </h4>
+            <h3> Total click : {counter} </h3>
+            <button onClick={onClick}>Click me</button>
           </div>
         )
     }
-    ReactDOM.render(<Container />, root);
+    ReactDOM.render(<App />, root);
  
 </script>
 </html>
