@@ -9,15 +9,14 @@
 <script type="text/babel">
     const root = document.getElementById("root");
     function App() {
-        const [counter, modifier] = React.useState(0);
-        const onClick = () => {
-          modifier((current) => current + 1); //Maybe because of race condition?
-        }
         return (
           <div>
-            <h4> Version 3.4 </h4>
-            <h3> Total click : {counter} </h3>
-            <button onClick={onClick}>Click me</button>
+            <h2> Version 3.5 (html) </h2>
+            <h1> Super Converter </h1>
+            <label for="minutes" >Minutes </label>
+            <input id="minutes" type="number" placeholder="Minutes"/>
+            <label for="hours" >Hours </label>
+            <input id="hours" type="number" placeholder="Hours"/>
           </div>
         )
     }
