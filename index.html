@@ -11,25 +11,49 @@
     function App() {
       //If you want to see JSX naming error, modify the first script from "react.production.min.js" as "react.development.js"
       const [minutes, setMinutes] = React.useState(0);
-      const onChange = (event) => {
+      const [hours, setHours] = React.useState(0);
+      const [flipped, setFlipped] = React.useState(false);
+      const onChangeM = (event) => {
         setMinutes(event.target.value);
+        setHours(Math.round(event.target.value / 60));
       };
+      const onChangeH = (event) => {
+        setHours(event.target.value);
+        setMinutes(event.target.value*60);
+      };
+      const reset = () => setMinutes(0);
+      const flip = () => setFlipped((current) => !current);
       return (
         <div>
-          <h2> Version 3.5 (html) </h2>
+          <h2> Version 3.7 (React, 3 states) </h2>
 
           <h1 className="hi"> Super Converter </h1>
+          
+          <div>
           <label htmlFor="minutes">Minutes </label>
           <input
             value={minutes}
             id="minutes"
             type="number"
             placeholder="Minutes"
-            onChange={onChange}
+            onChange={onChangeM}
+            disabled={flipped}
           />
-          <h4> You want to convert {minutes} minutes</h4>
+          </div>
+          
+          <div>
           <label htmlFor="hours">Hours </label>
-          <input id="hours" type="number" placeholder="Hours" />
+          <input 
+          value={hours}
+          id="hours"
+          type="number" 
+          placeholder="Hours"
+          onChange={onChangeH} 
+          disabled={!flipped}
+          />
+          </div>
+          <button onClick={reset}> Reset </button>
+          <button onClick={flip}>Flip</button>
         </div>
       );
     }
